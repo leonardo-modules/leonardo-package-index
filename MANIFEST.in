@@ -1,0 +1,6 @@
+include MANIFEST.in
+include README.rst
+
+recursive-include leonardo_package_index/static *
+recursive-include leonardo_package_index/locale *
+recursive-include leonardo_package_index/templates *
