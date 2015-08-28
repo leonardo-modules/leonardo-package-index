@@ -10,10 +10,6 @@ PACKAGINATOR_HELP_TEXT = {
 
 PACKAGINATOR_SEARCH_PREFIX = "django"
 
-GITHUB_API_SECRET = environ.get('GITHUB_API_SECRET')
-GITHUB_APP_ID = environ.get('GITHUB_APP_ID')
-GITHUB_TOKEN = environ.get('GITHUB_TOKEN', 'a11bfb1a3ee725346451ae438c8d4c4e099760cc')
-
 # LICENSES from PyPI
 LICENSES = """License :: Aladdin Free Public License (AFPL)
 License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
