@@ -23,7 +23,7 @@ LEONARDO_PLUGINS = [
 ]
 
 LEONARDO_CONFIG = {
-    'GITHUB_TOKEN': ('a11bfb1a3ee725346451ae438c8d4c4e099760cc', _('Github Token')),
+    'GITHUB_TOKEN': ('a11bfb1a3ee725346451ae438c8d4c4e099760cc', ('Github Token')),
 }
 
 
