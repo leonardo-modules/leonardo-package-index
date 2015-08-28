@@ -65,8 +65,7 @@ class Package(BaseModel):
     pypi_url = models.CharField(
         _("PyPI slug"), max_length=255, help_text=pypi_url_help_text, blank=True, default='')
     pypi_downloads = models.IntegerField(_("Pypi downloads"), default=0)
-    pypi_description = MarkupField(_('text'), blank=True, default=_(
-                        'Empty text'), default_markup_type='restructuredtext')
+    pypi_description = MarkupField(_('text'), blank=True, default='', default_markup_type='restructuredtext')
     participants = models.TextField(_("Participants"),
                                     help_text="List of collaborats/participants on the project", blank=True)
     usage = models.ManyToManyField(User, blank=True)
