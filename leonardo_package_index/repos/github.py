@@ -43,7 +43,10 @@ class GitHubHandler(BaseHandler):
 
         package.repo_watchers = repo.watchers
         package.repo_forks = repo.forks
-        package.repo_description = repo.description
+
+        content = repo.contents({'README.rst'}, ref='master')
+
+        package.repo_description = content.content if content else None
 
         contributors = []
         for contributor in repo.iter_contributors():

@@ -80,6 +80,13 @@ class Package(BaseModel):
     commit_list = models.TextField(_("Commit List"), blank=True)
 
     @property
+    def description(self):
+        from markupfield.markup import render_rest
+        if self.repo_description:
+            return render_rest(self.repo_description)
+        return self.pypi_description
+
+    @property
     def pypi_name(self):
         """ return the pypi name of a package"""
 
