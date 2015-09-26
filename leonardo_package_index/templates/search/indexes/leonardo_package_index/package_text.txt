@@ -1,0 +1,6 @@
+{{ object.title }}
+{{ object.slug }}
+{{ object.repo_description }}
+{{ object.repo_url }}
+{{ object.pypi_url }}
+{{ object.documentation_url }}

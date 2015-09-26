@@ -11,6 +11,7 @@ from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.utils import timezone
+from django.core import urlresolvers
 from django.utils.translation import ugettext_lazy as _
 from leonardo_package_index.repos import get_repo_for_repo_url
 from leonardo_package_index.utils import (STATUS_CHOICES, get_pypi_version,
@@ -46,9 +47,11 @@ class Category(BaseModel):
     def __unicode__(self):
         return self.title
 
-    @models.permalink
     def get_absolute_url(self):
-        return ("category", [self.slug])
+        return urlresolvers.reverse_lazy('package_index:category_detail',
+                                         kwargs={
+                                             'object_slug': self.slug
+                                         })
 
 
 class Package(BaseModel):
@@ -65,7 +68,8 @@ class Package(BaseModel):
     pypi_url = models.CharField(
         _("PyPI slug"), max_length=255, help_text=pypi_url_help_text, blank=True, default='')
     pypi_downloads = models.IntegerField(_("Pypi downloads"), default=0)
-    pypi_description = MarkupField(_('text'), blank=True, default='', default_markup_type='restructuredtext')
+    pypi_description = MarkupField(
+        _('text'), blank=True, default='', default_markup_type='restructuredtext')
     participants = models.TextField(_("Participants"),
                                     help_text="List of collaborats/participants on the project", blank=True)
     usage = models.ManyToManyField(User, blank=True)
@@ -293,9 +297,11 @@ class Package(BaseModel):
     def __unicode__(self):
         return self.title
 
-    @models.permalink
     def get_absolute_url(self):
-        return ("package", [self.slug])
+        return urlresolvers.reverse_lazy('package_index:package_detail',
+                                         kwargs={
+                                             'object_slug': self.slug
+                                         })
 
     @property
     def last_commit(self):
