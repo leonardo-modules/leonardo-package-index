@@ -16,12 +16,8 @@
           <tr>
               <th>{% trans "Name" %}</th>
               <th>{% trans "Commits" %}</th>
-              {% if category.show_pypi %}
-                  <th>{% trans "Version" %}</th>
-              {% endif %}                    
-              {% if category.show_pypi %}
-                  <th>{% trans "PyPi Downloads" %}</th>
-              {% endif %}
+              <th>{% trans "Version" %}</th>
+              <th>{% trans "PyPi Downloads" %}</th>
               <th><span class="glyphicon glyphicon-star"></span></th>
               <th><span class="glyphicon glyphicon-random"></th>
           </tr>

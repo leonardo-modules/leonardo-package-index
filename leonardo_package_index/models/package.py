@@ -34,7 +34,6 @@ class Category(BaseModel):
     slug = models.SlugField(_("slug"))
     description = models.TextField(_("description"), blank=True)
     title_plural = models.CharField(_("Title Plural"), max_length="50", blank=True)
-    show_pypi = models.BooleanField(_("Show pypi stats & version"), default=True)
 
     @property
     def count(self):
@@ -59,7 +58,7 @@ class Package(BaseModel):
     title = models.CharField(_("Title"), max_length="100")
     slug = models.SlugField(
         _("Slug"), help_text="Enter a valid 'slug' consisting of letters, numbers, underscores or hyphens. Values will be converted to lowercase.", unique=True)
-    category = models.ForeignKey(Category, verbose_name="Installation")
+    category = models.ManyToManyField(Category, verbose_name="Installation", blank=True)
     repo_description = models.TextField(_("Repo Description"), blank=True)
     repo_url = models.URLField(
         _("repo URL"), help_text=repo_url_help_text, blank=True, unique=True)
@@ -82,6 +81,7 @@ class Package(BaseModel):
         _("Documentation URL"), blank=True, null=True, default="")
 
     commit_list = models.TextField(_("Commit List"), blank=True)
+    show_pypi = models.BooleanField(_("Show pypi stats & version"), default=True)
 
     @property
     def description(self):
