@@ -11,53 +11,60 @@ from .models import Package
 CounterWidget = apps.get_model('web', 'CounterWidget')
 
 
+def _get_counters(name):
+    return CounterWidget.objects.filter(label__icontains=name)
+
+
 def update_counter_modules():
     '''Package counter'''
 
-    counter = CounterWidget.objects.get(label__icontains='modules')
-    counter.number = Package.objects.count()
-    counter.save()
+    for counter in _get_counters('modules'):
+        counter.number = Package.objects.count()
+        counter.save()
     return counter.number
 
 
 def update_counter_downloads():
     '''Update downloads'''
-    counter = CounterWidget.objects.get(label__icontains='downloads')
-    counter.number = reduce(lambda x, y: x + y,
-                            [p.total_downloads
-                             for p in Package.objects.all()])
-    counter.save()
+
+    for counter in _get_counters('downloads'):
+        counter.number = reduce(lambda x, y: x + y,
+                                [p.total_downloads
+                                 for p in Package.objects.all()])
+        counter.save()
     return counter.number
 
 
 def update_counter_stars():
     '''Update stars'''
-    counter = CounterWidget.objects.get(label__icontains='stars')
-    counter.number = reduce(lambda x, y: x + y,
-                            [p.repo_watchers
-                             for p in Package.objects.all()])
-    counter.save()
+
+    for counter in _get_counters('stars'):
+        counter.number = reduce(lambda x, y: x + y,
+                                [p.repo_watchers
+                                 for p in Package.objects.all()])
+        counter.save()
     return counter.number
 
 
 def update_counter_forks():
     '''Update forks'''
-    counter = CounterWidget.objects.get(label__icontains='forks')
-    counter.number = reduce(lambda x, y: x + y,
-                            [p.repo_forks
-                             for p in Package.objects.all()])
-    counter.save()
 
+    for counter in _get_counters('forks'):
+        counter.number = reduce(lambda x, y: x + y,
+                                [p.repo_forks
+                                 for p in Package.objects.all()])
+        counter.save()
     return counter.number
 
 
 def update_counter_participants():
     '''Update participants'''
-    counter = CounterWidget.objects.get(label__icontains='participants')
-    counter.number = reduce(lambda x, y: x + y,
-                            [len(p.participants.split(','))
-                             for p in Package.objects.all()])
-    counter.save()
+
+    for counter in _get_counters('participants'):
+        counter.number = reduce(lambda x, y: x + y,
+                                [len(p.participants.split(','))
+                                 for p in Package.objects.all()])
+        counter.save()
 
     return counter.number
 
