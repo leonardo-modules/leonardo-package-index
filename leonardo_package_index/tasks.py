@@ -55,7 +55,7 @@ def update_counter_participants():
     '''Update participants'''
     counter = CounterWidget.objects.get(label__icontains='participants')
     counter.number = reduce(lambda x, y: x + y,
-                            [p.participants
+                            [len(p.participants.split(','))
                              for p in Package.objects.all()])
     counter.save()
 
