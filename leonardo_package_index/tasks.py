@@ -60,10 +60,15 @@ def update_counter_forks():
 def update_counter_participants():
     '''Update participants'''
 
+    participants = []
+    for p in Package.objects.all():
+        contributors = p.participants.split(',')
+        for contributor in contributors:
+            if contributor not in participants:
+                participants.append(contributor)
+
     for counter in _get_counters('participants'):
-        counter.number = reduce(lambda x, y: x + y,
-                                [len(p.participants.split(','))
-                                 for p in Package.objects.all()])
+        counter.number = len(participants)
         counter.save()
 
     return counter.number
