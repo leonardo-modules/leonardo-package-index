@@ -1,5 +1,4 @@
 from django.contrib import admin
-from reversion.admin import VersionAdmin
 
 from leonardo_package_index.models import Category, Package, PackageExample, Commit, Version
 
@@ -8,7 +7,7 @@ class PackageExampleInline(admin.TabularInline):
     model = PackageExample
 
 
-class PackageAdmin(VersionAdmin):
+class PackageAdmin(admin.ModelAdmin):
 
     save_on_top = True
     search_fields = ("title",)
@@ -43,7 +42,7 @@ class PackageExampleAdmin(admin.ModelAdmin):
     search_fields = ("title",)
 
 
-admin.site.register(Category, VersionAdmin)
+admin.site.register(Category)
 admin.site.register(Package, PackageAdmin)
 admin.site.register(Commit, CommitAdmin)
 admin.site.register(Version, VersionLocalAdmin)
