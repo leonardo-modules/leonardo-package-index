@@ -20,6 +20,7 @@ LEONARDO_WIDGETS = [
 
 LEONARDO_PLUGINS = [
     ('leonardo_package_index.apps.package_index', ('Package Index'), ),
+    ('leonardo_package_index.apps.package_index_api', ('Package Index API'), ),
 ]
 
 LEONARDO_CONFIG = {
