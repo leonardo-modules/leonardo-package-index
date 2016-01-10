@@ -8,5 +8,5 @@ urlpatterns = patterns('leonardo_package_index.apps.views',
                        (r'^categories/$', 'category_list', {}, 'category_list'),
                        (r'^categories/(?P<object_slug>[\-\w]+)/$',
                         'category_detail', {}, 'category_detail'),
-                       url(r'^api/', include('leonardo_package_index.api.urls'),),
+                       url(r'^packages/api/', include('leonardo_package_index.api.urls'),),
                        )
