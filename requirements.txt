@@ -2,3 +2,4 @@ requests
 github3.py==0.7.0
 httplib2==0.7.7
 docutils
+djangorestframework>=3.3.2

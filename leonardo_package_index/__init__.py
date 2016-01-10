@@ -9,6 +9,7 @@ default_app_config = 'leonardo_package_index.Config'
 
 LEONARDO_APPS = [
     'leonardo_package_index',
+    'rest_framework'
 ]
 
 LEONARDO_OPTGROUP = 'Leonardo Packages'
